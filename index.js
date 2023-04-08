@@ -107,6 +107,30 @@ post recipe json format:
   });
   //######################################## DELETE RECIPE ##################################################
 
+    //######################################## UPDATE RECIPE ##################################################
+    app.put('/updateRecipe/:id', (req,res)=>{
+      const {id}= req.params;
+      const {RECIPE_TITLE, IMAGE_URL, RECIPE_PUBLISHER, SOURCE_URL, PUBLISHED_DATE} = req.body;
+      //console.log('UPDATE RECIPE HEADER ID::: '+ id);
+      const sql = 'UPDATE RECIPE.T_RECIPES SET  RECIPE_TITLE=?, IMAGE_URL=?, RECIPE_PUBLISHER=?, SOURCE_URL=?, PUBLISHED_DATE=? WHERE RECIPE_ID='+id;
+      //console.log(sql);
+      
+      const values =[RECIPE_TITLE, IMAGE_URL, RECIPE_PUBLISHER, SOURCE_URL, PUBLISHED_DATE];
+
+      connection.query(sql, values, (err,results) =>{
+        if(err) {
+          console.error(err);
+          res.status(500).send('Error updating recipe!!   --->  '+err.message);
+        }
+        else{
+          //res.send(results);
+          res.send('Recipe updated successfully ID: '+id);
+        }
+      });
+  
+    });
+    //######################################## UPDATE RECIPE ##################################################
+
 app.listen(PORT, () => console.log('Server running on port: http://localhost:${PORT}'));
 
 
