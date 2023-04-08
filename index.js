@@ -46,6 +46,17 @@ post recipe json format:
     }
 */
 
+/*
+CREATE TABLE T_RECIPES(
+RECIPE_ID INT PRIMARY KEY AUTO_INCREMENT,
+RECIPE_TITLE VARCHAR(200),
+IMAGE_URL VARCHAR(200),
+RECIPE_PUBLISHER VARCHAR(200),
+SOURCE_URL VARCHAR(200),
+PUBLISHED_DATE DATE
+);
+*/
+
   //######################################## GET ALL RECIPES ##################################################
   app.get('/recipes', (req,res)=>{
 
